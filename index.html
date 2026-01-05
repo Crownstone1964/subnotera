@@ -3,21 +3,247 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Subnotera</title>  
-    
-    <style>
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    padding: 3rem;
-    background: #f7f7f7;
-    color: #222;
-  }
-</style>
+    <title>Subnotera</title>
+    <meta name="description" content="Subnotera — a clean, focused landing page." />
 
+    <style>
+      :root {
+        --bg: #0b0f19;
+        --card: rgba(255, 255, 255, 0.06);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.68);
+        --accent: #7c3aed;
+        --accent2: #22c55e;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 800px at 15% 10%, rgba(124, 58, 237, 0.35), transparent 60%),
+          radial-gradient(1000px 700px at 85% 20%, rgba(34, 197, 94, 0.22), transparent 55%),
+          radial-gradient(900px 700px at 50% 110%, rgba(59, 130, 246, 0.18), transparent 55%),
+          var(--bg);
+      }
+
+      a { color: inherit; text-decoration: none; }
+      .wrap {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 18px 60px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 0 22px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+
+      .logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(124,58,237,0.95), rgba(34,197,94,0.75));
+        box-shadow: 0 12px 30px rgba(124,58,237,0.18);
+      }
+
+      .nav {
+        display: flex;
+        gap: 14px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .nav a:hover { color: var(--text); }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .panel {
+        border: 1px solid var(--border);
+        background: var(--card);
+        border-radius: 18px;
+        padding: 22px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(28px, 4vw, 46px);
+        line-height: 1.05;
+        letter-spacing: -0.6px;
+      }
+      .subtitle {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 52ch;
+      }
+
+      .ctaRow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.06);
+        color: var(--text);
+        font-weight: 650;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .btn:hover { background: rgba(255,255,255,0.09); }
+      .btn.primary {
+        border-color: rgba(124,58,237,0.55);
+        background: linear-gradient(135deg, rgba(124,58,237,0.95), rgba(124,58,237,0.55));
+        box-shadow: 0 16px 40px rgba(124,58,237,0.18);
+      }
+      .btn.primary:hover { filter: brightness(1.05); }
+
+      .meta {
+        margin-top: 16px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .pill {
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.05);
+        padding: 7px 10px;
+        border-radius: 999px;
+      }
+
+      .side h2 {
+        margin: 0 0 12px;
+        font-size: 14px;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .item {
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        border-radius: 14px;
+        padding: 12px 12px;
+      }
+      .item b { display: block; margin-bottom: 4px; }
+      .item span { color: var(--muted); font-size: 14px; line-height: 1.35; }
+
+      footer {
+        margin-top: 22px;
+        color: rgba(255,255,255,0.55);
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 14px 2px 0;
+      }
+
+      @media (max-width: 860px) {
+        .hero { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
+
   <body>
-    <h1>Subnotera is live.</h1>
-    <p>If you can read this, the deploy worked.</p>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>Subnotera</div>
+        </div>
+        <nav class="nav">
+          <a href="#features">Features</a>
+          <a href="#status">Status</a>
+          <a href="https://github.com/Crownstone1964/subnotera" target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <section class="panel">
+          <h1>Simple. Sharp. Deployed.</h1>
+          <p class="subtitle">
+            Subnotera is live and ready to grow. This is a clean landing page foundation—
+            fast, professional, and easy to expand without breaking your pipeline.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#status">View status</a>
+            <a class="btn" href="https://subnotera.vercel.app" target="_blank" rel="noreferrer">Open live site</a>
+            <a class="btn" href="https://github.com/Crownstone1964/subnotera/blob/main/index.html" target="_blank" rel="noreferrer">View source</a>
+          </div>
+
+          <div class="meta" id="status">
+            <div class="pill">✅ Production: Active</div>
+            <div class="pill">⚡ Vercel auto-deploy</div>
+            <div class="pill">🧱 Single-file build</div>
+          </div>
+        </section>
+
+        <aside class="panel side" id="features">
+          <h2>What’s next</h2>
+          <ul class="list">
+            <li class="item">
+              <b>Custom domain</b>
+              <span>Hook Namecheap → Vercel so it’s yours, not a vercel.app link.</span>
+            </li>
+            <li class="item">
+              <b>Real content sections</b>
+              <span>About, roadmap, contact, and a clear “what this does” statement.</span>
+            </li>
+            <li class="item">
+              <b>Polish + tracking</b>
+              <span>Add favicon, social preview, analytics, and a clean footer.</span>
+            </li>
+          </ul>
+        </aside>
+      </main>
+
+      <footer>
+        <div>© <span id="y"></span> Subnotera</div>
+        <div>Built on GitHub + Vercel</div>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
-
